@@ -15,7 +15,7 @@ const StarWarsInput = ({ value, onChange }) => {
           <div className="white" />
           <div className="border" />
           <div id="main">
-            <input placeholder="Search..." type="text" name="text" className="input" />
+            <input placeholder="Search..." type="text" name="text" className="input" value={value} onChange={onChange} />
             <div id="input-mask" />
             <div id="pink-mask" />
             <div className="filterBorder" />
