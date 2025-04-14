@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Characters } from './components/Characters';
+import StarWarsInput from './components/StarWarsInput';
+import { StarWarsApi } from './api/starWarsApi';
 
 const App = () => {
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
+  const [arama, setArama] = useState('');
+  const [list, setList] = useState([]);
 
-  // Fetch characters from the API in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
+  const handleChange = (e) => {
+    setArama(e.target.value);
+  };
 
+  useEffect(()=>{
+    StarWarsApi.getPoeple().then(result =>setList(result));
+  }, []);
+
+    
   return (
     <div className="App">
       <h1 className="Header">Karakterler</h1>
+
+      <StarWarsInput />
+
+      <Characters charList={list} aramaKelimesi={arama} />
     </div>
   );
-}
+};
 
 export default App;
