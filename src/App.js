@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import StarWarsInput from './components/StarWarsInput';
 import { Characters } from './components/Characters';
+import StarWarsInput from './components/StarWarsInput';
 import { StarWarsApi } from './api/starWarsApi';
 
 const App = () => {
   const [arama, setArama] = useState('');
-  const [list, setList] = useState({ results: [] });
+  const [list, setList] = useState([]); // Doğrudan DİZİ
 
   const handleChange = (e) => {
     setArama(e.target.value);
@@ -14,17 +14,15 @@ const App = () => {
   useEffect(() => {
     StarWarsApi.getPeople().then(result => {
       console.log("API'den gelen veri:", result);
-      setList(result.results); // 🔥 sadece dizi kısmını alıyoruz
+      setList(result.results); // ❗️Sadece results kısmı, çünkü bu bir dizi
     });
-  }, []);  
-    
+  }, []);
 
   return (
-    <div className="App" style={{ position: "relative", zIndex: 10 }}>
-      <h1 style={{ color: 'white' }}>Karakterler</h1>
-
+    <div className="App" style={{ padding: "2rem" }}>
+      <h1 style={{ color: "white" }}>Karakterler</h1>
       <StarWarsInput value={arama} onChange={handleChange} />
-       <Characters charList={list} aramaKelimesi={arama} />
+      <Characters charList={list} aramaKelimesi={arama} />
     </div>
   );
 };

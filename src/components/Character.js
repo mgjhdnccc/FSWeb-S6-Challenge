@@ -6,15 +6,11 @@ export const Character = ({ charObj }) => {
   const [detail, setDetail] = useState({});
   const [showDetail, setShowDetail] = useState(false);
 
-  console.log("charObj", charObj); // 🔍 HER karakterde ekrana basılacak
-
   const clickHandler = async (e) => {
     e.preventDefault();
-    console.log('Karakter URL:', charObj.url);
     const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
     setDetail(characterDetail);
     setShowDetail(true);
-    console.log('Detay verisi:', characterDetail);
   };
 
   return (
@@ -39,19 +35,19 @@ export const Character = ({ charObj }) => {
 
 const StyledWrapper = styled.div`
   button {
-    font-size: 1.4em;
-    padding: 0.6em 0.8em;
+    font-size: 1.2em;
+    padding: 0.6em 1em;
     border-radius: 0.5em;
     border: none;
     background-color: #000;
     color: #fff;
     cursor: pointer;
-    box-shadow: 2px 2px 3px #000000b4;
+    margin: 0.4rem 0;
   }
 `;
 
 const DetailWrapper = styled.div`
   color: white;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding-left: 1rem;
 `;
