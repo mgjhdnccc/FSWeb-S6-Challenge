@@ -1,9 +1,9 @@
 import { Character } from "./Character";
 
-export const Characters = ({ charList = [], aramaKelimesi = '' }) => {
-    const filteredList = charList.filter(item =>
+export const Characters = ({ charList = {}, aramaKelimesi = '' }) => {
+    const filteredList = charList.results?.filter(item =>
       item.name.toLowerCase().includes(aramaKelimesi.toLowerCase())
-    );
+    ) || [];
   
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -14,5 +14,6 @@ export const Characters = ({ charList = [], aramaKelimesi = '' }) => {
         }
       </div>
     );
-  };  
+  };
+  
   
