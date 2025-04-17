@@ -86,4 +86,4 @@ const StyledWrapper = styled.div`
     filter: blur(0.2em);
   }`;
 
-export default Button;
+export default Character;
