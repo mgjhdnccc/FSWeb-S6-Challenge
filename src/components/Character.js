@@ -2,33 +2,35 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StarWarsApi } from '../api/starWarsApi';
 
-export const Character = ({charObj}) => {
+export const Character = ({ charObj }) => {
   const [detail, setDetail] = useState({});
   const [showDetail, setShowDetail] = useState(false);
 
   const clickHandler = async (e) => {
     e.preventDefault();
-    console.log('url', charObj.url);
-    let characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
+    console.log('Karakter URL:', charObj.url);
+    const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
     setDetail(characterDetail);
     setShowDetail(true);
-    console.log('button clicked');
+    console.log('Detay verisi:', characterDetail);
   };
 
   return (
     <>
       <StyledWrapper>
-        <button alt={charObj.name} onClick={clickHandler}>
-          {
-            charObj.name &&
-            charObj.name.split('').map((char, index) => <i key={index}>{char === ' ' ? '   ' : char}</i>)
-          }
+        <button onClick={clickHandler}>
+          {charObj.name}
         </button>
       </StyledWrapper>
-      {
-        showDetail &&
-        <span>DETAY BILGI</span>
-      }
+
+      {showDetail && (
+        <DetailWrapper>
+          <p>Boy: {detail.height} cm</p>
+          <p>Kilo: {detail.mass} kg</p>
+          <p>Göz Rengi: {detail.eye_color}</p>
+          <p>Doğum Yılı: {detail.birth_year}</p>
+        </DetailWrapper>
+      )}
     </>
   );
 };
@@ -44,31 +46,10 @@ const StyledWrapper = styled.div`
     cursor: pointer;
     box-shadow: 2px 2px 3px #000000b4;
   }
+`;
 
-  .container {
-    position: relative;
-    padding: 3px;
-    background: linear-gradient(90deg, #03a9f4, #f441a5);
-    border-radius: 0.9em;
-    transition: all 0.4s ease;
-  }
-
-  .container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    border-radius: 0.9em;
-    z-index: -10;
-    filter: blur(0);
-    transition: filter 0.4s ease;
-  }
-
-  .container:hover::before {
-    background: linear-gradient(90deg, #03a9f4, #f441a5);
-    filter: blur(1.2em);
-  }
-  .container:active::before {
-    filter: blur(0.2em);
-  }
+const DetailWrapper = styled.div`
+  color: white;
+  margin-top: 1rem;
+  padding-left: 1rem;
 `;
