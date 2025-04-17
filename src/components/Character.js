@@ -3,49 +3,35 @@ import styled from 'styled-components';
 import { StarWarsApi } from '../api/starWarsApi';
 
 export const Character = ({charObj}) => {
-const [detail, setDetail] = useState({});
-const [showDetail, setShowDetail] = useState(false);
+  const [detail, setDetail] = useState({});
+  const [showDetail, setShowDetail] = useState(false);
 
-const clickHandler = async (e) =>{
+  const clickHandler = async (e) => {
     e.preventDefault();
     console.log('url', charObj.url);
     let characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
     setDetail(characterDetail);
     setShowDetail(true);
     console.log('button clicked');
-}
+  };
 
   return (
     <>
-        <StyledWrapper>
-        <button alt={charObj.name} onClick={clickHandler} >
-            {
-                charObj.name &&
-                charObj.name.split('').map(char => <i>{ char === ' ' ? '   ' : char}</i>)
-            }
+      <StyledWrapper>
+        <button alt={charObj.name} onClick={clickHandler}>
+          {
+            charObj.name &&
+            charObj.name.split('').map((char, index) => <i key={index}>{char === ' ' ? '   ' : char}</i>)
+          }
         </button>
-        </StyledWrapper>
-        {
-            showDetail &&
-            <span>DETAY BILGI</span>
-        }
-
+      </StyledWrapper>
+      {
+        showDetail &&
+        <span>DETAY BILGI</span>
+      }
     </>
   );
-}
-
-import React from 'react';
-import styled from 'styled-components';
-
-const Button = () => {
-  return (
-    <StyledWrapper>
-      <div className="container">
-        <button className="button">Hover me</button>
-      </div>
-    </StyledWrapper>
-  );
-}
+};
 
 const StyledWrapper = styled.div`
   button {
@@ -84,6 +70,5 @@ const StyledWrapper = styled.div`
   }
   .container:active::before {
     filter: blur(0.2em);
-  }`;
-
-export default Character;
+  }
+`;
