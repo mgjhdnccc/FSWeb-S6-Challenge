@@ -12,8 +12,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    StarWarsApi.getPeople().then(result => setList(result));
+    StarWarsApi.getPeople().then(result => {
+      console.log("API'den gelen veri:", result); // 🔍
+      setList(result.results); // sadece results kısmını al
+    });
   }, []);
+  
 
   return (
     <div className="App" style={{ position: "relative", zIndex: 10 }}>
