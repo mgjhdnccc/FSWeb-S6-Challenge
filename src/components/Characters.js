@@ -1,7 +1,7 @@
 import { Character } from "./Character";
 
-export const Characters = ({ charList = { results: [] }, aramaKelimesi = '' }) => {
-    const filteredList = charList.results.filter(item =>
+export const Characters = ({ charList = [], aramaKelimesi = '' }) => {
+    const filteredList = charList.filter(item =>
       item.name.toLowerCase().includes(aramaKelimesi.toLowerCase())
     );
   
@@ -14,5 +14,5 @@ export const Characters = ({ charList = { results: [] }, aramaKelimesi = '' }) =
         }
       </div>
     );
-  };
+  };  
   

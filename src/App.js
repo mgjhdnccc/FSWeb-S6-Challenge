@@ -12,8 +12,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    StarWarsApi.getPeople().then(result => setList(result));
-  }, []);
+    StarWarsApi.getPeople().then(result => setList(result.results));
+  }, []);  
 
   return (
     <div className="App" style={{ position: "relative", zIndex: 10 }}>
