@@ -6,12 +6,12 @@ export const Characters = ({ charList = [], aramaKelimesi = '' }) => {
     );
   
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         {filteredList.map(item => (
           <Character key={item.url} charObj={item} />
         ))}
       </div>
     );
-  };  
+  };    
   
   

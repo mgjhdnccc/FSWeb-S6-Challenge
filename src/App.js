@@ -12,16 +12,19 @@ const App = () => {
   };
 
   useEffect(() => {
-    StarWarsApi.getPeople().then(result => { setList(result); });
-  }, []);  
+    StarWarsApi.getPeople().then(result => {
+      console.log("API'den gelen veri:", result);
+      setList(result); // <-- DOĞRU
+    });
+  }, []);
+    
 
   return (
     <div className="App" style={{ position: "relative", zIndex: 10 }}>
       <h1 style={{ color: 'white' }}>Karakterler</h1>
 
       <StarWarsInput value={arama} onChange={handleChange} />
-
-      <Characters charList={list} aramaKelimesi={arama} />
+       <Characters charList={list} aramaKelimesi={arama} />
     </div>
   );
 };

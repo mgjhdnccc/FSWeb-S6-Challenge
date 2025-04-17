@@ -6,6 +6,8 @@ export const Character = ({ charObj }) => {
   const [detail, setDetail] = useState({});
   const [showDetail, setShowDetail] = useState(false);
 
+  console.log("charObj", charObj); // 🔍 HER karakterde ekrana basılacak
+
   const clickHandler = async (e) => {
     e.preventDefault();
     console.log('Karakter URL:', charObj.url);
