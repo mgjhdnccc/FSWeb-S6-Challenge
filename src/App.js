@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import StarWarsInput from './components/StarWarsInput';
+import React, { useEffect, useState } from 'react';
+import { Characters } from './components/Characters';
+import { StarWarsApi } from './api/starWarsApi';
 
 const App = () => {
   const [arama, setArama] = useState('');
+  const [list, setList] = useState([]);
 
   const handleChange = (e) => {
     setArama(e.target.value);
   };
 
+  useEffect(()=>{
+    StarWarsApi.getPoeple().then(result =>setList(result));
+  }, []);
+
+    
   return (
     <div className="App">
       <h1 style={{ color: 'white' }}>Karakterler</h1>
-      <input
-        type="text"
-        placeholder="Ara..."
-        value={arama}
-        onChange={handleChange}
-        style={{ padding: '10px', fontSize: '1.2em', borderRadius: '6px' }}
-      />
+  
+      <StarWarsInput value={arama} onChange={handleChange} />
+  
       <p style={{ color: 'white' }}>Aranan kelime: {arama}</p>
     </div>
   );
