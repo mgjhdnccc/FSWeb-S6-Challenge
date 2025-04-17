@@ -5,8 +5,7 @@ const StarWarsInput = ({ value, onChange }) => {
   return (
     <StyledWrapper>
       <div>
-    
-        {/* <div className="grid" /> */}
+        <div className="grid" />
         <div id="poda">
           <div className="glow" />
           <div className="darkBorderBg" />
@@ -55,7 +54,19 @@ const StarWarsInput = ({ value, onChange }) => {
 }
 
 const StyledWrapper = styled.div`
-  
+
+.grid {
+  height: 800px;
+  width: 800px;
+  background-image: linear-gradient(to right, #0f0f10 1px, transparent 1px),
+    linear-gradient(to bottom, #0f0f10 1px, transparent 1px);
+  background-size: 1rem 1rem;
+  background-position: center center;
+  position: absolute;
+  z-index: -10; /* 🔥 Önemli olan kısım */
+  filter: blur(1px);
+}
+
   .white,
   .border,
   .darkBorderBg,
