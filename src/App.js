@@ -16,7 +16,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" style={{ position: "relative", zIndex: 1 }}>
       <h1 style={{ color: 'white' }}>Karakterler</h1>
 
       <StarWarsInput value={arama} onChange={handleChange} />
