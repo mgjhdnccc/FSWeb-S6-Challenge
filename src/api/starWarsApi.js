@@ -20,7 +20,7 @@ export let StarWarsApi = {
     getPlanets: async () => {
         return await makeGetRequest(`${BASE_URL}planets/`);
     },
-    getPoeple: async () => {
+    getPeople: async () => {
         return await makeGetRequest(`${BASE_URL}people/`);
     },
     getPeopleDetails: async (id) => {

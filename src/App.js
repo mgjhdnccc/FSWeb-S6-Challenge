@@ -20,7 +20,8 @@ const App = () => {
     <div className="App">
       <h1 className="Header">Karakterler</h1>
 
-      <StarWarsInput />
+      <StarWarsInput value={arama} onChange={handleChange} />
+
 
       <Characters charList={list} aramaKelimesi={arama} />
     </div>
