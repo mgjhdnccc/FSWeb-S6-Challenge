@@ -5,15 +5,14 @@ const StarWarsInput = ({ value, onChange }) => {
   return (
     <StyledWrapper>
       <div>
-        {/* <div className="grid" /> */}
+       <div className="grid" /> 
         <div id="poda">
-          {/* <div className="glow" /> */}
-          {/* <div className="darkBorderBg" /> */}
-          {/* <div className="darkBorderBg" /> */}
-          {/* <div className="darkBorderBg" /> */}
-          {/* <div className="white" /> */}
-          {/* <div className="border" /> */}
-
+          <div className="glow" />
+          <div className="darkBorderBg" />
+          <div className="darkBorderBg" />
+          <div className="darkBorderBg" />
+          <div className="white" />
+          <div className="border" />
           <div id="main">
           <input
             placeholder="Search..."
