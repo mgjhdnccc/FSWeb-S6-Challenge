@@ -34,100 +34,56 @@ const clickHandler = async (e) =>{
   );
 }
 
+import React from 'react';
+import styled from 'styled-components';
+
+const Button = () => {
+  return (
+    <StyledWrapper>
+      <div className="container">
+        <button className="button">Hover me</button>
+      </div>
+    </StyledWrapper>
+  );
+}
+
 const StyledWrapper = styled.div`
   button {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 50px;
-   position: relative;
-   padding: 0 20px;
-   font-size: 18px;
-   text-transform: uppercase;
-   border: 0;
-   box-shadow: hsl(210deg 87% 36%) 0px 7px 0px 0px;
-   background-color: hsl(210deg 100% 44%);
-   border-radius: 12px;
-   overflow: hidden;
-   transition: 31ms cubic-bezier(.5, .7, .4, 1);
+    font-size: 1.4em;
+    padding: 0.6em 0.8em;
+    border-radius: 0.5em;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px #000000b4;
   }
 
-  button:before {
-   content: attr(alt);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   position: absolute;
-   inset: 0;
-   font-size: 15px;
-   font-weight: bold;
-   color: white;
-   letter-spacing: 4px;
-   opacity: 1;
+  .container {
+    position: relative;
+    padding: 3px;
+    background: linear-gradient(90deg, #03a9f4, #f441a5);
+    border-radius: 0.9em;
+    transition: all 0.4s ease;
   }
 
-  button:active {
-   box-shadow: none;
-   transform: translateY(7px);
-   transition: 35ms cubic-bezier(.5, .7, .4, 1);
+  .container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 0.9em;
+    z-index: -10;
+    filter: blur(0);
+    transition: filter 0.4s ease;
   }
 
-  button:hover:before {
-   transition: all .0s;
-   transform: translateY(100%);
-   opacity: 0;
+  .container:hover::before {
+    background: linear-gradient(90deg, #03a9f4, #f441a5);
+    filter: blur(1.2em);
   }
-
-  button i {
-   color: white;
-   font-size: 15px;
-   font-weight: bold;
-   letter-spacing: 4px;
-   font-style: normal;
-   transition: all 2s ease;
-   transform: translateY(-20px);
-   opacity: 0;
-   min-width: 7px;
-  }
-
-  button:hover i {
-   transition: all .2s ease;
-   transform: translateY(0px);
-   opacity: 1;
-  }
-
-  button:hover i:nth-child(1) {
-   transition-delay: 0.045s;
-  }
-
-  button:hover i:nth-child(2) {
-   transition-delay: calc(0.045s * 3);
-  }
-
-  button:hover i:nth-child(3) {
-   transition-delay: calc(0.045s * 4);
-  }
-
-  button:hover i:nth-child(4) {
-   transition-delay: calc(0.045s * 5);
-  }
-
-  button:hover i:nth-child(6) {
-   transition-delay: calc(0.045s * 6);
-  }
-
-  button:hover i:nth-child(7) {
-   transition-delay: calc(0.045s * 7);
-  }
-
-  button:hover i:nth-child(8) {
-   transition-delay: calc(0.045s * 8);
-  }
-
-  button:hover i:nth-child(9) {
-   transition-delay: calc(0.045s * 9);
-  }
-
-  button:hover i:nth-child(10) {
-   transition-delay: calc(0.045s * 10);
+  .container:active::before {
+    filter: blur(0.2em);
   }`;
+
+export default Button;
