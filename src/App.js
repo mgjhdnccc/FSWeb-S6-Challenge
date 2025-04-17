@@ -14,9 +14,9 @@ const App = () => {
   useEffect(() => {
     StarWarsApi.getPeople().then(result => {
       console.log("API'den gelen veri:", result);
-      setList(result); // <-- DOĞRU
+      setList(result.results); // 🔥 sadece dizi kısmını alıyoruz
     });
-  }, []);
+  }, []);  
     
 
   return (

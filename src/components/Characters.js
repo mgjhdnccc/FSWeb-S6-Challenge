@@ -12,6 +12,6 @@ export const Characters = ({ charList = [], aramaKelimesi = '' }) => {
         ))}
       </div>
     );
-  };    
+  };      
   
   
