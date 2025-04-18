@@ -66,18 +66,21 @@ const DetailWrapper = styled.div`
   margin: 1rem 0;
   padding: 2rem;
   border: 2px solid #ad4ec6;
-  border-radius: 100px;
+  border-radius: 50px;
   background: rgba(255, 255, 255, 0.05);
   max-width: 800px;
   animation: fadeIn 0.5s ease-in-out;
 
   img {
-    display: block;
-    max-width: 200px;
-    max-height: 200px;
-    margin: 0 auto 1rem;
-    object-fit: contain;
-  }
+  display: block;
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0 auto 1rem;
+  object-fit: contain;
+  border: 3px solid #ad4ec6;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(173, 78, 198, 0.4);
+}
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
