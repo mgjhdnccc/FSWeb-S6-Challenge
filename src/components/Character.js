@@ -9,12 +9,9 @@ export const Character = ({ charObj }) => {
   const clickHandler = async (e) => {
     e.preventDefault();
     try {
-      const match = charObj.url.match(/\/people\/(\d+)\//); // id'yi yakala
-      const id = match ? match[1] : null;
-      if (!id) return console.error("ID bulunamadı");
-
-      console.log("🔍 ID:", id);
-      const characterDetail = await StarWarsApi.getPeopleDetails(id); // doğrudan güvenli çağrı
+      const secureUrl = charObj.url.replace("http://", "https://"); // 🔐 kritik adım
+      console.log("🛰 Veri çekiliyor:", secureUrl);
+      const characterDetail = await StarWarsApi.makeGetRequest(secureUrl);
       console.log("✅ Detay verisi:", characterDetail);
       setDetail(characterDetail);
       setShowDetail(true);
