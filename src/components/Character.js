@@ -62,12 +62,12 @@ const StyledWrapper = styled.div`
 `;
 
 const DetailWrapper = styled.div`
-  color: white;
+  color: #ad4ec6;
   margin: 1rem 0;
-  padding: 1rem;
+  padding: 2rem;
   border: 2px solid #0f0;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  background: #ad4ec6;
   max-width: 800px;
   animation: fadeIn 0.5s ease-in-out;
 
