@@ -69,5 +69,31 @@ const StyledWrapper = styled.div`
 const AnimatedDetail = styled(motion.div)`
   color: white;
   margin-top: 0.5rem;
-  padding-left: 1rem;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  z-index: 1;
+
+  /* Parlak kenarlık efekti */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80);
+    z-index: -1;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+  }
+
+  p {
+    margin: 0.4rem 0;
+  }
 `;
