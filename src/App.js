@@ -5,7 +5,7 @@ import { StarWarsApi } from './api/starWarsApi';
 
 const App = () => {
   const [arama, setArama] = useState('');
-  const [list, setList] = useState([]); // Doğrudan DİZİ
+  const [list, setList] = useState([]); // doğrudan dizi
 
   const handleChange = (e) => {
     setArama(e.target.value);
@@ -13,10 +13,12 @@ const App = () => {
 
   useEffect(() => {
     StarWarsApi.getPeople().then(result => {
-      console.log("API'den gelen veri:", result);
-      setList(result.results); // ❗️Sadece results kısmı, çünkü bu bir dizi
+      console.log("🔄 API'den gelen veri:", result); // LOG 1
+      setList(result.results); // sadece results dizisi
     });
   }, []);
+
+  console.log("📦 App içinde list state'i:", list); // LOG 2
 
   return (
     <div className="App" style={{ padding: "2rem" }}>
