@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion'; // ⭐ animasyon için eklendi
 import { StarWarsApi } from '../api/starWarsApi';
+import { motion } from 'framer-motion';
 
 export const Character = ({ charObj }) => {
   const [detail, setDetail] = useState(null);
@@ -9,23 +9,24 @@ export const Character = ({ charObj }) => {
 
   const clickHandler = async (e) => {
     e.preventDefault();
-
     if (showDetail) {
-      setShowDetail(false); // yeniden tıklanınca kapansın
+      setShowDetail(false);
       return;
     }
-
-    if (!detail) {
-      try {
-        const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
-        setDetail(characterDetail);
-      } catch (error) {
-        console.error("❌ Detay verisi çekilemedi:", error);
-      }
+    try {
+      console.log("🛰 Veri çekiliyor:", charObj.url);
+      const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
+      console.log("✅ Detay verisi:", characterDetail);
+      setDetail(characterDetail);
+      setShowDetail(true);
+    } catch (error) {
+      console.error("❌ Detay verisi çekilemedi:", error);
     }
-
-    setShowDetail(true);
   };
+
+  // Görsel dosyasını karakter adına göre eşleştir
+  const imageName = `${charObj.name}.png`;
+  const imagePath = `/images/${imageName}`;
 
   return (
     <>
@@ -36,17 +37,17 @@ export const Character = ({ charObj }) => {
       </StyledWrapper>
 
       {showDetail && detail && (
-        <AnimatedDetail
+        <MotionDetailWrapper
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4 }}
         >
+          <img src={imagePath} alt={charObj.name} />
           <p>Boy: {detail.height} cm</p>
           <p>Kilo: {detail.mass} kg</p>
           <p>Göz Rengi: {detail.eye_color}</p>
           <p>Doğum Yılı: {detail.birth_year}</p>
-        </AnimatedDetail>
+        </MotionDetailWrapper>
       )}
     </>
   );
@@ -65,35 +66,24 @@ const StyledWrapper = styled.div`
   }
 `;
 
-// 🌀 motion.div ile stil verilmiş özel detay kutusu
-const AnimatedDetail = styled(motion.div)`
-  color: white;
-  margin-top: 0.5rem;
+const MotionDetailWrapper = styled(motion.div)`
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid #444;
+  border-radius: 10px;
   padding: 1rem;
-  border-radius: 0.6rem;
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  position: relative;
-  z-index: 1;
+  margin: 1rem 0;
+  color: white;
+  max-width: 300px;
 
-  /* Parlak kenarlık efekti */
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80);
-    z-index: -1;
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 1rem;
   }
 
   p {
-    margin: 0.4rem 0;
+    margin: 0.2rem 0;
   }
 `;
