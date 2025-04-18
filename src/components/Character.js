@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion'; // ⭐ animasyon için eklendi
 import { StarWarsApi } from '../api/starWarsApi';
 
 export const Character = ({ charObj }) => {
@@ -8,26 +9,23 @@ export const Character = ({ charObj }) => {
 
   const clickHandler = async (e) => {
     e.preventDefault();
-  
-    // Eğer detay açıkken tekrar tıklanıyorsa, sadece kapat
+
     if (showDetail) {
-      setShowDetail(false);
+      setShowDetail(false); // yeniden tıklanınca kapansın
       return;
     }
-  
-    // Detay kapalıysa, veri çek ve aç
+
     if (!detail) {
       try {
         const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
-        console.log(characterDetail);
         setDetail(characterDetail);
       } catch (error) {
         console.error("❌ Detay verisi çekilemedi:", error);
       }
     }
-  
+
     setShowDetail(true);
-  };  
+  };
 
   return (
     <>
@@ -38,12 +36,17 @@ export const Character = ({ charObj }) => {
       </StyledWrapper>
 
       {showDetail && detail && (
-        <DetailWrapper>
+        <AnimatedDetail
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.4 }}
+        >
           <p>Boy: {detail.height} cm</p>
           <p>Kilo: {detail.mass} kg</p>
           <p>Göz Rengi: {detail.eye_color}</p>
           <p>Doğum Yılı: {detail.birth_year}</p>
-        </DetailWrapper>
+        </AnimatedDetail>
       )}
     </>
   );
@@ -62,7 +65,8 @@ const StyledWrapper = styled.div`
   }
 `;
 
-const DetailWrapper = styled.div`
+// 🌀 motion.div ile stil verilmiş özel detay kutusu
+const AnimatedDetail = styled(motion.div)`
   color: white;
   margin-top: 0.5rem;
   padding-left: 1rem;
