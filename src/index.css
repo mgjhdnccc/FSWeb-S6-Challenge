@@ -10,3 +10,7 @@ body {
   background-position: center;
   overflow-x:hidden ; 
   };
+
+  .grid {
+    display: none !important;
+  }  
