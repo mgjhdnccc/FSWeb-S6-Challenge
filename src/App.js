@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <div className="App" style={{ padding: "2rem" }}>
-      <h1 style={{ color: "white" }}>Karakterler</h1>
+      <h1 style={{ color: "#ad4ec6" }}>Karakterler</h1>
       <StarWarsInput value={arama} onChange={handleChange} />
       <Characters charList={list} aramaKelimesi={arama} />
     </div>
