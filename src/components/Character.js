@@ -9,8 +9,9 @@ export const Character = ({ charObj }) => {
   const clickHandler = async (e) => {
     e.preventDefault();
     try {
-      console.log("🛰 Veri çekiliyor:", charObj.url);
-      const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
+      const secureUrl = charObj.url.replace("http://", "https://"); // 🔧 HTTPS fix
+      console.log("🛰 Veri çekiliyor:", secureUrl);
+      const characterDetail = await StarWarsApi.makeGetRequest(secureUrl);
       console.log("✅ Detay verisi:", characterDetail);
       setDetail(characterDetail);
       setShowDetail(true);
