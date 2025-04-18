@@ -8,6 +8,11 @@ export const Character = ({ charObj }) => {
 
   const clickHandler = async (e) => {
     e.preventDefault();
+
+    if (showDetail) {
+      setShowDetail(false);
+    }
+
     try {
       const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
       setDetail(characterDetail);
