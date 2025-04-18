@@ -9,8 +9,4 @@ body {
   background-attachment: fixed; /* 🔥 */
   background-position: center;
   overflow-x:hidden ; 
-  };
-
-  .grid {
-    display: none !important;
-  }  
+  }; 
