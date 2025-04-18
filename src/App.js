@@ -13,10 +13,10 @@ const App = () => {
 
   useEffect(() => {
     StarWarsApi.getPeople().then(result => {
-      console.log("🔄 API'den gelen veri:", result); // LOG 1
-      setList(result.results); // sadece results dizisi
+      console.log("🔄 API'den gelen veri:", result);
+      setList(result); // ✅ SADECE result
     });
-  }, []);
+  }, []);  
 
   console.log("📦 App içinde list state'i:", list); // LOG 2
 
