@@ -1,9 +1,9 @@
 import luke from './karakter fotoğrafları/Luke Skywalker.png';
-import c3po from './karakter fotoğrafları/c-3po.png';
+import c3po from './karakter fotoğrafları/C-3PO.png';
 import r2d2 from './karakter fotoğrafları/R2-D2.png';
 import vader from './karakter fotoğrafları/Darth Vader.png';
 import leia from './karakter fotoğrafları/Leia Organa.png';
-import owen from './karakter fotoğrafları/owen lars.png';
+import owen from './karakter fotoğrafları/Owen Lars.png';
 import beru from './karakter fotoğrafları/Beru Whitesun lars.png';
 import biggs from './karakter fotoğrafları/Biggs Darklighter.png';
 import obiwan from './karakter fotoğrafları/Obi-Wan Kenobi.png';
