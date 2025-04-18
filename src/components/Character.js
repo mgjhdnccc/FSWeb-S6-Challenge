@@ -3,14 +3,20 @@ import styled from 'styled-components';
 import { StarWarsApi } from '../api/starWarsApi';
 
 export const Character = ({ charObj }) => {
-  const [detail, setDetail] = useState({});
+  const [detail, setDetail] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
 
   const clickHandler = async (e) => {
     e.preventDefault();
-    const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
-    setDetail(characterDetail);
-    setShowDetail(true);
+    try {
+      console.log("🛰 Veri çekiliyor:", charObj.url);
+      const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
+      console.log("✅ Detay verisi:", characterDetail);
+      setDetail(characterDetail);
+      setShowDetail(true);
+    } catch (error) {
+      console.error("❌ Detay verisi çekilemedi:", error);
+    }
   };
 
   return (
@@ -21,7 +27,7 @@ export const Character = ({ charObj }) => {
         </button>
       </StyledWrapper>
 
-      {showDetail && (
+      {showDetail && detail && (
         <DetailWrapper>
           <p>Boy: {detail.height} cm</p>
           <p>Kilo: {detail.mass} kg</p>
