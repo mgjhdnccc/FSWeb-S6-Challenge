@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion'; // ⭐ animasyon için eklendi
 import { StarWarsApi } from '../api/starWarsApi';
+
+// Karakter ismi ile görsel eşleşmesi
+import characterImages from '../images/characterImages';
 
 export const Character = ({ charObj }) => {
   const [detail, setDetail] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
 
-  const clickHandler = async (e) => {
-    e.preventDefault();
-
+  const clickHandler = async () => {
     if (showDetail) {
-      setShowDetail(false); // yeniden tıklanınca kapansın
+      setShowDetail(false);
       return;
     }
 
-    if (!detail) {
-      try {
-        const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
-        setDetail(characterDetail);
-      } catch (error) {
-        console.error("❌ Detay verisi çekilemedi:", error);
-      }
+    try {
+      const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
+      setDetail(characterDetail);
+      setShowDetail(true);
+    } catch (error) {
+      console.error("❌ Detay verisi çekilemedi:", error);
     }
-
-    setShowDetail(true);
   };
+
+  // İsme göre uygun görseli al
+  const image = characterImages[charObj.name];
 
   return (
     <>
@@ -36,17 +36,13 @@ export const Character = ({ charObj }) => {
       </StyledWrapper>
 
       {showDetail && detail && (
-        <AnimatedDetail
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.4 }}
-        >
+        <DetailWrapper>
+          {image && <img src={image} alt={charObj.name} />}
           <p>Boy: {detail.height} cm</p>
           <p>Kilo: {detail.mass} kg</p>
           <p>Göz Rengi: {detail.eye_color}</p>
           <p>Doğum Yılı: {detail.birth_year}</p>
-        </AnimatedDetail>
+        </DetailWrapper>
       )}
     </>
   );
@@ -65,35 +61,26 @@ const StyledWrapper = styled.div`
   }
 `;
 
-// 🌀 motion.div ile stil verilmiş özel detay kutusu
-const AnimatedDetail = styled(motion.div)`
+const DetailWrapper = styled.div`
   color: white;
-  margin-top: 0.5rem;
+  margin: 1rem 0;
   padding: 1rem;
-  border-radius: 0.6rem;
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  position: relative;
-  z-index: 1;
+  border: 2px solid #0f0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  max-width: 800px;
+  animation: fadeIn 0.5s ease-in-out;
 
-  /* Parlak kenarlık efekti */
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80);
-    z-index: -1;
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
+  img {
+    display: block;
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto 1rem;
+    object-fit: contain;
   }
 
-  p {
-    margin: 0.4rem 0;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 `;
