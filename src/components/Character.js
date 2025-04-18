@@ -8,19 +8,26 @@ export const Character = ({ charObj }) => {
 
   const clickHandler = async (e) => {
     e.preventDefault();
-
+  
+    // Eğer detay açıkken tekrar tıklanıyorsa, sadece kapat
     if (showDetail) {
       setShowDetail(false);
+      return;
     }
-
-    try {
-      const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
-      setDetail(characterDetail);
-      setShowDetail(true);
-    } catch (error) {
-      console.error("Detay verisi çekilemedi:", error);
+  
+    // Detay kapalıysa, veri çek ve aç
+    if (!detail) {
+      try {
+        const characterDetail = await StarWarsApi.makeGetRequest(charObj.url);
+        console.log(characterDetail);
+        setDetail(characterDetail);
+      } catch (error) {
+        console.error("❌ Detay verisi çekilemedi:", error);
+      }
     }
-  };
+  
+    setShowDetail(true);
+  };  
 
   return (
     <>
