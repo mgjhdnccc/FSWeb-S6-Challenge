@@ -65,7 +65,7 @@ const DetailWrapper = styled.div`
   color:#ad4ec6;
   margin: 1rem 0;
   padding: 2rem;
-  border: 2px solid #0f0;
+  border: 2px solid #ad4ec6;
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.05);
   max-width: 800px;
