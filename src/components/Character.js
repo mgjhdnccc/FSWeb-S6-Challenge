@@ -9,7 +9,7 @@ export const Character = ({ charObj }) => {
   const clickHandler = async (e) => {
     e.preventDefault();
     try {
-      const secureUrl = charObj.url.replace("http://", "https://"); // 🔧 HTTPS fix
+      const secureUrl = charObj.url.replace("http://", "https://"); // 🔐 kritik adım
       console.log("🛰 Veri çekiliyor:", secureUrl);
       const characterDetail = await StarWarsApi.makeGetRequest(secureUrl);
       console.log("✅ Detay verisi:", characterDetail);
