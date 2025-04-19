@@ -14,11 +14,21 @@ body {
 
 /* Başlık */
 h1 {
-  text-align: center;
+  text-align: left;
   margin-top: 1rem;
-  font-size: 2rem;
+  padding-left: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
   color: #ad4ec6;
+  text-shadow:
+    0 0 5px #ad4ec6,
+    0 0 10px #ad4ec6,
+    0 0 20px #661266,
+    0 0 40px #2e003e;
+  letter-spacing: 2px;
+  font-family: 'Orbitron', sans-serif; /* Uzay teması için */
 }
+
 
 /* Uygulama genel kapsayıcısı */
 .app-wrapper {
