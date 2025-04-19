@@ -7,6 +7,7 @@ import GitHubButton from './components/GitHubButton';
 function App() {
   const [characterList, setCharacterList] = useState([]);
   const [search, setSearch] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await StarWarsApi.getPeople();

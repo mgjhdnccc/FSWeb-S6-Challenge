@@ -1,10 +1,10 @@
 import { Character } from "./Character";
 
-export const Characters = ({ charList = [], aramaKelimesi = '' }) => {
+export const Characters = ({ charList = [], search = '' }) => {
   console.log("📋 Characters bileşenine gelen charList:", charList); // LOG 3
 
   const filteredList = charList.filter(item =>
-    item.name.toLowerCase().includes(aramaKelimesi.toLowerCase())
+    item.name.toLowerCase().includes(search.toLowerCase())
   );
 
   console.log("🔎 Filtrelenmiş liste:", filteredList); // LOG 4
