@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StarWarsApi } from './api/starWarsApi';
-import Characters from './components/Characters';
+import { Characters } from './components/Characters';
 import StarWarsInput from './components/StarWarsInput';
 import GitHubButton from './components/GitHubButton';
 
