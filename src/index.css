@@ -8,5 +8,45 @@ body {
   background-size: cover;
   background-attachment: fixed; /* 🔥 */
   background-position: center;
-  overflow-x:hidden ; 
-  }; 
+  overflow-x: hidden;
+  color: white;
+}
+
+/* Başlık */
+h1 {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: #ad4ec6;
+}
+
+/* Uygulama genel kapsayıcısı */
+.app-wrapper {
+  padding: 2rem;
+}
+
+/* GitHub Butonu */
+.github-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.github-button:hover {
+  transform: scale(1.1);
+  background-color: #ad4ec6;
+}
+
+.github-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

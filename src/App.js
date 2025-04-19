@@ -1,32 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { Characters } from './components/Characters';
-import StarWarsInput from './components/StarWarsInput';
+import React, { useState, useEffect } from 'react';
 import { StarWarsApi } from './api/starWarsApi';
+import Characters from './components/Characters';
+import StarWarsInput from './components/StarWarsInput';
+import GitHubButton from './components/GitHubButton';
 
-const App = () => {
-  const [arama, setArama] = useState('');
-  const [list, setList] = useState([]);
-
-  const handleChange = (e) => {
-    setArama(e.target.value);
-  };
-
+function App() {
+  const [characterList, setCharacterList] = useState([]);
+  const [search, setSearch] = useState('');
   useEffect(() => {
-    StarWarsApi.getPeople().then(result => {
-      console.log("🔄 API'den gelen veri:", result);
-      setList(result.results); // 🔥 sadece karakterler dizisi
-    });
-  }, []);    
+    const fetchData = async () => {
+      const data = await StarWarsApi.getPeople();
+      setCharacterList(data.results || []);
+    };
+    fetchData();
+  }, []);
 
-  console.log("📦 App içinde list state'i:", list); // LOG 2
+  const handleSearch = (e) => setSearch(e.target.value);
 
   return (
-    <div className="App" style={{ padding: "2rem" }}>
-      <h1 style={{ color: "#ad4ec6" }}>Karakterler</h1>
-      <StarWarsInput value={arama} onChange={handleChange} />
-      <Characters charList={list} aramaKelimesi={arama} />
+    <div className="app-wrapper">
+      <h1>Karakterler</h1>
+      <StarWarsInput value={search} onChange={handleSearch} />
+      <Characters charList={characterList} search={search} />
+      <GitHubButton />
     </div>
   );
-};
+}
 
 export default App;
