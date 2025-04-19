@@ -20,13 +20,35 @@ h1 {
   font-size: 2.5rem;
   font-weight: bold;
   color: #ad4ec6;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+
+  /* Neon efekti */
   text-shadow:
     0 0 5px #ad4ec6,
     0 0 10px #ad4ec6,
     0 0 20px #661266,
     0 0 40px #2e003e;
-  letter-spacing: 2px;
-  font-family: 'Orbitron', sans-serif; /* Uzay teması için */
+
+  /* Parlama animasyonu */
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow:
+      0 0 5px #ad4ec6,
+      0 0 10px #ad4ec6,
+      0 0 20px #661266,
+      0 0 40px #2e003e;
+  }
+  to {
+    text-shadow:
+      0 0 10px #ff66ff,
+      0 0 20px #ff66ff,
+      0 0 40px #cc33cc,
+      0 0 60px #990099;
+  }
 }
 
 
