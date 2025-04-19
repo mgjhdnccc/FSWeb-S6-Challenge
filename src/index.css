@@ -1,3 +1,4 @@
+/* Temel stil */
 body {
   margin: 0;
   padding: 0;
@@ -6,13 +7,13 @@ body {
   background-image: url('./images/sw-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed; /* 🔥 */
+  background-attachment: fixed;
   background-position: center;
   overflow-x: hidden;
   color: white;
 }
 
-/* Başlık */
+/* Başlık - neon efekt + siyah çerçeve */
 h1 {
   text-align: left;
   margin-top: 1rem;
@@ -23,33 +24,35 @@ h1 {
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 2px;
 
-  /* Neon efekti */
+  /* Neon parlama efekti */
   text-shadow:
-    0 0 5px #ad4ec6,
-    0 0 10px #ad4ec6,
-    0 0 20px #661266,
-    0 0 40px #2e003e;
+  0 0 3px #ad4ec6,
+  0 0 6px #ad4ec6,
+  0 0 10px #661266;
 
-  /* Parlama animasyonu */
-  animation: glow 2s ease-in-out infinite alternate;
+
+  /* Harf kenarına siyah çerçeve */
+  -webkit-text-stroke: 1px black;
+  text-stroke: 1px black;
+
+  /* Animasyon */
+  animation: glow 6s ease-in-out infinite alternate;
 }
 
+/* Neon animasyon */
 @keyframes glow {
   from {
     text-shadow:
-      0 0 5px #ad4ec6,
-      0 0 10px #ad4ec6,
-      0 0 20px #661266,
-      0 0 40px #2e003e;
+      0 0 3px #ad4ec6,
+      0 0 6px #661266;
   }
   to {
     text-shadow:
-      0 0 10px #ff66ff,
-      0 0 20px #ff66ff,
-      0 0 40px #cc33cc,
-      0 0 60px #990099;
+      0 0 6px #ff66ff,
+      0 0 12px #cc33cc;
   }
 }
+
 
 
 /* Uygulama genel kapsayıcısı */
