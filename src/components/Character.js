@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'; 
 import characterImages from '../images/characterImages';
+import { StarWarsApi } from '../api/starWarsApi';
+
 
 export const Character = ({ charObj }) => {
   const [detail, setDetail] = useState(null);
