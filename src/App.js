@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      <h1>Karakterler</h1>
+      <h1>STAR WARS</h1>
       <StarWarsInput value={search} onChange={handleSearch} />
       <Characters charList={characterList} search={search} />
       <GitHubButton />
