@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 import characterImages from '../images/characterImages';
 import { StarWarsApi } from '../api/starWarsApi';
 
 export const Character = ({ charObj }) => {
   const [detail, setDetail] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
+  const [feedback, setFeedback] = useState(null); // like/unlike seçimi
 
   const clickHandler = async () => {
     if (showDetail) {
@@ -19,6 +20,10 @@ export const Character = ({ charObj }) => {
     } catch (error) {
       console.error("❌ Detay verisi çekilemedi:", error);
     }
+  };
+
+  const handleFeedback = (value) => {
+    setFeedback((prev) => (prev === value ? null : value));
   };
 
   const image = characterImages[charObj.name];
@@ -37,10 +42,15 @@ export const Character = ({ charObj }) => {
           <p>Göz Rengi: {detail.eye_color}</p>
           <p>Doğum Yılı: {detail.birth_year}</p>
 
-          {/* Like/Unlike */}
+          
           <div className="like-unlike-radio">
             <div>
-            <input id={`like-${charObj.name}`} name={`feedback-${charObj.name}`} value="like" className="custom-radio-fb" type="radio" />
+              <input
+                id={`like-${charObj.name}`}
+                type="checkbox"
+                checked={feedback === 'like'}
+                onChange={() => handleFeedback('like')}
+              />
               <label htmlFor={`like-${charObj.name}`} className="feedback-label">
                 <svg className="icon" width={27} height={27} viewBox="0 0 27 27" fill="currentColor">
                   <path d="M0.72 26.5h5.2V10.9H0.72V26.5zM26.63 15.26l-2.26 8.49c-.37 1.61-1.81 2.75-3.47 2.75H8.52V10.93l2.23-8.05c.21-1.36 1.39-2.37 2.77-2.37 1.55 0 2.81 1.25 2.81 2.8v7.6h6.84c2.29.001 3.98 2.13 3.46 4.35z"/>
@@ -51,10 +61,9 @@ export const Character = ({ charObj }) => {
             <div>
               <input
                 id={`unlike-${charObj.name}`}
-                name={`feedback-${charObj.name}`}
-                value="unlike"
-                className="custom-radio-fb"
-                type="radio"
+                type="checkbox"
+                checked={feedback === 'unlike'}
+                onChange={() => handleFeedback('unlike')}
               />
               <label htmlFor={`unlike-${charObj.name}`} className="feedback-label">
                 <svg className="icon" width={27} height={27} viewBox="0 0 27 27" fill="currentColor">
@@ -119,7 +128,7 @@ const DetailWrapper = styled.div`
     flex-wrap: wrap;
   }
 
-  .custom-radio-fb {
+  input[type='checkbox'] {
     display: none;
   }
 
@@ -138,11 +147,11 @@ const DetailWrapper = styled.div`
     color: var(--hover);
   }
 
-  .custom-radio-fb:checked ~ .feedback-label {
+  input[type='checkbox']:checked + .feedback-label {
     color: var(--active-color);
   }
 
-  .custom-radio-fb:checked ~ .feedback-label svg {
+  input[type='checkbox']:checked + .feedback-label svg {
     animation: bounce 0.3s ease;
   }
 
