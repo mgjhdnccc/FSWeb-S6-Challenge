@@ -1,9 +1,9 @@
 import { Character } from "./Character";
 
-export const Characters = ({ charList = [], aramaKelimesi = '' }) => {
+export const Characters = ({ charList = [], search = '' }) => {
   console.log("📋 Characters bileşenine gelen charList:", charList);
 
-  const searchText = aramaKelimesi.toLowerCase();
+  const searchText = search.toLowerCase();
 
   const filteredList = charList.filter(item => {
     return (
