@@ -4,7 +4,7 @@ body {
   padding: 0;
   height: 100%;
   font-family: sans-serif;
-  background-image: url('./images/sw-bg.jpg');
+  background-image: url('./images/sw-bg.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
