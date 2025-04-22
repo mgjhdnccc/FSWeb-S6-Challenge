@@ -78,6 +78,9 @@ export const Character = ({ charObj }) => {
 };
 
 const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
   button {
     font-size: 1.2em;
     padding: 0.6em 1em;
@@ -87,6 +90,8 @@ const StyledWrapper = styled.div`
     color: #fff;
     cursor: pointer;
     margin: 0.4rem 0;
+    min-width: 160px;
+    text-align: center;
   }
 `;
 
